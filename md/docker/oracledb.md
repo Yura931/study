@@ -148,3 +148,10 @@ $ cat /etc/resolv.conf
 # generateResolvConf = false
 nameserver 000.00.0.1 <- ip주소
 ```
+
+
+> - **[참고링크]**
+>   - https://gomguk.tistory.com/69
+>   - https://kindloveit.tistory.com/13
+>   - https://yooloo.tistory.com/27
+>   - https://imitursa.tistory.com/4370
