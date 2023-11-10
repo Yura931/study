@@ -157,6 +157,11 @@ SQL Server
 - SELECT TOP(2) WITH TIES ENAME, SAL FROM EMP ORDER BY SAL DESC;
 
 ### 집합 연산자
+- EXCEPT
+- UNION ALL
+- UNION
+- INTERSECT 
+  - 교집합
 
 
 ### 계층 쿼리
@@ -166,6 +171,6 @@ SQL Server
   - ORDER SIBLINGS BY절: 형제 노드 사이에서 정렬을 지정하는 구문
   - 순방향전개: 부모 노드로부터 자식 노드 방향으로 전개하는 것
   - 루트노드의 LEVEL 값은 1
-  - PRIOR: CONNECT BY절에 사용되며, 현재 읽은 칼럼을 지정한다.
+  - PRIOR: CONNECT BY절에 사용되며, 현재 읽은 칼럼을 지정한다, select절이나 where절에도 사용 가능
     - PRIOR 자식 = 부모 형태를 사용하면 계층구조에서 부모 데이터에서 자식 데이터(부모 -> 자식) 방향으로 전개하는 순방향 전개를 한다.
-    - 그리고 PRIOR 부모 = 자식 형태ㅡㄹ 사용하면 반대로 자식 데이터에서 부모 데이터(자식 -> 부모) 방향으로 전개하는 역방향 전개를 한다.)
+    - 그리고 PRIOR 부모 = 자식 형태를 출사용하면 반대로 자식 데이터에서 부모 데이터(자식 -> 부모) 방향으로 전개하는 역방향 전개를 한다.)
