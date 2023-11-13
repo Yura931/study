@@ -84,6 +84,21 @@ SQL Server
 
 ### case when
 - else값이 없는 경우 조건에 해당하지 않으면 null 값이 저장된다.
+```sql
+-- SEARCHED_CASE_EXPRESSION
+SELECT LOC,
+       CASE WHEN LOC = 'NEW YORK' THEN 'EAST'
+       ELSE 'ETC'
+       END AS AREA
+FROM DEPT;
+
+-- SIMPLE_CASE_EXPRESSION
+SELECT LOC,
+       CASE LOC WHEN 'NEW YORK' THEN 'EAST'
+       ELSE 'ETC'
+       END AS AREA
+FROM DEPT;
+```
 
 ### 집계함수
 - NULL이 있는 경우 제외 후 연산 됨

@@ -1,0 +1,11 @@
+# JOIN
+
+---
+
+### ANSI/ISO SQL에서 표시하는 FROM 절의 JOIN 형태
+- INNER JON
+- NATURAL JOIN
+- USING 조건절
+- ON 조건절
+- CROSS JOIN
+- OUTER JOIN(LEFT, RIGHT, FULL)
