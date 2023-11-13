@@ -1,38 +1,3 @@
-### CREATE TABLE
-```sql
--- create 시 함께 제약 조건 지정
-CREATE TABLE PRODUCT
-(
-    PROD_ID VARCHAR2(10) NOT NULL,
-    PROD_NM VARCHAR2(100) NOT NULL,
-    REG_DT DATE NOT NULL,
-    REGR_NO NUMBER(10) NULL,
-    CONSTRAINT PRODUCT_PK PRIMARY KEY (PROD_ID)
-);
-
--- create 후 alter문을 통해 제약 조건 추가
-CREATE TABLE PRODUCT2
-(
-    PROD_ID VARCHAR2(10) NOT NULL,
-    PROD_NM VARCHAR2(100) NOT NULL,
-    REG_DT DATE NOT NULL,
-    REGR_NO NUMBER(10) NULL
-);
-ALTER TABLE PRODUCT2 ADD CONSTRAINT PRODUCT_PK2 PRIMARY KEY (PROD_ID);
-```
-
-### 테이블 컬럼에 대한 정의 변경
-- 오라클
-  - ALTER TABLE 테이블명 MODIFY 컬럼이름 데이터유형 NOTNULL/NULL
-  - ALTER TABLE COL_ADD_TBL MODIFY COL_NAME VARCHAR2(20); NULL생략시 기본값 NULL
-- SQL Server - SQL Server의 경우 컬럼을 여러개 한번에 변경하지 못한다.  
-  - ALTER TABLE 테이블명 ALTER 컬럼이름 데이터유형 NOTNULL/NULL
-  - ALTER TABLE COL_ADD_TBL ALTER COL_NAME BIGINT (NULL)
-
-### null
-- 모르는 값
-- NULL과의 모든 비교(IS NULL 제외)는 알 수 없음(Unknown)을 반환
-
 ### 테이블 선언 시 참조 옵션
 ```sql
 CREATE TABLE T
@@ -47,13 +12,6 @@ CREATE TABLE R
     (A INTEGER PRIMARY KEY,
     B INTEGER REFERENCES S(B) ON DELETE SET NULL);  -- S테이블의 B 참조, S테이블의 B가 삭제되면 해당 컬럼에 NULL로 대체
 ```
-
-### 제약 조건의 종류
-- PRIMARY KEY(기본키): 중복 불가능, NULL 불가능
-- UNIQUE KEY(고유키): 중복 불가능, NULL 가능
-- NOT NULL: 명시적으로 NULL 입력을 방지
-- CHECK: 테이블 만들 때 설정 가능 컬럼의 속성에 대한 제약 가능 무결성 유지
-- FOREIGN KEY: 외래키로 테이블당 여러 개 생성이 가능
 
 ### INDEX
 - 데이터베이스에서 검색 속도를 빠르게 도와주는 역할
@@ -88,28 +46,6 @@ CREATE INDEX 인덱스명 ON 테이블명 (컬럼)
 - CASCADE
 - RESTRICT
 - AUTOMATIC
-
-### 데이터 삭제
-- 모든 작업들은 트랜잭션 로그를 남길 수 있음 LOG DB에 쌓아두다 어느정도 차게 되면 실제 DB에 동기화 작업
-- DROP, TRUNCATE, DELETE 모두 삭제 작업, 이 중 DELETE만 로그를 남길 수 있다.
-- DROP
-  - DDL
-  - ROLLBACK 불가능
-  - AUTO COMMIT
-  - 용량 모두 반환
-  - 테이블의 정의 자체를 완전히 삭제함
-- TRUNCATE
-  - DDL(일부 DML 성격 가짐)
-  - ROLLBACK 불가능
-  - AUTO COMMIT
-  - 테이블 최초 생성 시 용량만 남기고, 모두 반환함.
-  - 테이블을 최초 생성된 초기상태로 만듦
-- DELETE
-  - DML
-  - COMMIT 이전 ROLLBACK 가능
-  - 사용자 COMMIT
-  - 용량 반환 하지 않음
-  - 데이터만 삭제
 
 ### AUTO COMMIT
 - 오라클

@@ -1,0 +1,52 @@
+# DDL(Data Definition Language)
+
+---
+
+### CREATE TABLE
+```sql
+-- ORACLE
+
+-- create 시 함께 제약 조건 지정
+CREATE TABLE PRODUCT
+(
+    PROD_ID VARCHAR2(10) NOT NULL,
+    PROD_NM VARCHAR2(100) NOT NULL,
+    REG_DT DATE NOT NULL,
+    REGR_NO NUMBER(10) NULL,
+    CONSTRAINT PRODUCT_PK PRIMARY KEY (PROD_ID)
+);
+
+-- create 후 alter문을 통해 제약 조건 추가
+CREATE TABLE PRODUCT2
+(
+    PROD_ID VARCHAR2(10) NOT NULL,
+    PROD_NM VARCHAR2(100) NOT NULL,
+    REG_DT DATE NOT NULL,
+    REGR_NO NUMBER(10) NULL
+);
+ALTER TABLE PRODUCT2 ADD CONSTRAINT PRODUCT_PK2 PRIMARY KEY (PROD_ID);
+```
+
+### 테이블 컬럼에 대한 정의 변경
+```sql
+-- ORACLE
+ALTER TABLE 테이블명 MODIFY 컬럼이름 데이터유형 NOT NULL/NULL
+ALTER TABLE PRODUCT MODIFY PROD_ID VARCHAR2(10) NOT NULL; -- NULL생략시 기본값 NULL
+
+-- SQL Server -> SQL Server의 경우 컬럼을 여러개 한번에 변경하지 못한다.
+ALTER TABLE 테이블명 ALTER 컬럼이름 데이터유형 NOT NULL / NULL
+ALTER TABLE PRODUCT ALTER REGR_NO BIGINT NOT NULL; 
+```
+
+### 테이블 컬럼 삭제
+```sql
+ALTER TABLE 테이블명 DROP COLUMN 삭제할 컬럼명;
+```
+
+### 테이블 이름 변경
+```sql
+RENAME 테이블명 TO 바꿀 테이블명;
+    
+-- STADIUM 테이블의 이름을 STADIUM_JSC로 변경하는 SQL (ANSI 표준 기준)
+RENAME STADIUM TO STADIUM_JSC;
+```
