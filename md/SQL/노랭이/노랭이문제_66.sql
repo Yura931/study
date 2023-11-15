@@ -38,7 +38,7 @@ FROM 고객 a INNER JOIN 추천컨텐츠 b
 ON (a.aid = b.aid) INNER JOIN 컨텐츠 c
 ON (b.cid = c.cid)
 WHERE a.aid = '001'
-  AND b.cdate = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+  AND b.cdate = TO_CHAR('2023-11-13', 'YYYY-MM-DD')
   AND NOT EXISTS (
         SELECT x.cid
         FROM 비선호컨텐츠 x
