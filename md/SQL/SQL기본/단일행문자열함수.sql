@@ -9,7 +9,7 @@ select CONCAT('가', '나') from dual; -- 결과 가나
 select SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1, 5) from dual; -- 결과 ABCDE
 select SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 20) from dual; -- 결과 TUVWXYZ
 
--- INSTR('비교할대상', '비교하고자하는 값', 비교를 시작할 위치, 검색된 결과의 순번
+select INSTR('ABCDE', 'CD') from dual; -- 비교를 시작할 위치, 검색된 결과의 순번
 -- 주어진 문자열이나 컬럼에서 특정 글자의 위치를 찾아주는 함수
 select 'A-B-C-D', INSTR('A-B-C-D', '-', 1, 2) "INSTR" FROM DUAL;    -- 4 첫번째 인자 문자열에서 세번째 인자 문자에서 시작해서 네번째 인자에 갬색되는 두 번째 인자 문자의 위치 출력
 SELECT REPLACE('ABCDE', 'ABC', 'A') FROM DUAL;   -- 첫번째 인자 문자열에서 두번째 인자 문자열을 찾아 세번째 인자 문자열로 변경 후 반환 ADE
