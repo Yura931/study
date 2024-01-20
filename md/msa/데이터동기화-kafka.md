@@ -58,3 +58,44 @@
   - RESTful API 통해 지원(Postman, URI)
   - Stream 또는 Batch 형태로 데이터 전송 가능
   - 커스텀 Connector를 통한 다양한 Plugin 제공 (File, S3, Hive, Mysql, etc ...)
+
+#### Kafka Connect 설치
+```text
+  - curl -O http://packages.confluent.io/archive/5.5/confluent-community-5.5.2-2.12.tar.gz
+  - curl -O http://packages.confluent.io/archive/6.1/confluent-community-6.1.0.tar.gz
+  - tar xvf confluent-community-6.1.0.tar.gz
+  - cd $KAFKA_CONNECT_HOME
+  
+  2024-01-20 기준 windows
+  - confluent-7.3.1
+  - confluentinc-kafka-connect-jdbc-10.6.3 
+  사용
+  
+  
+```
+- Kafka Connect 설정 (기본으로 사용)
+  - $KAFKA_HOME/config/connect-distributed.properties
+- Kafka Connect 실행
+  - ./bin/(windows)/connect-distributed ./etc/kafka/connect-distributed.properties
+- Topic 목록 확인
+  - ./bin/(windows)/kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+#### Kafka Source Connect 테스트
+- Kafka Source Connect 추가(MariaDB)
+- 데이터베이스 테이블에 데이터가 추가되면 자동으로 Source Connect에 의해서 컨슈머가 데이터를 받아 볼 수 있음
+- 토픽의 데이터가 쌓이는 것을 확인해 볼 수 있다.
+
+#### Kafka Sink Connect 테스트
+- Kafka Sink Connect 추가(MariaDB)
+```
+echo '
+{
+  "name":"my-sink-connect",
+    ...
+}
+' | curl -X POST -d @- http://localhost:8083/connectors --header "content-Type:application/json"
+```
+- 데이터가 업데이트 됨과 동시에 데이터를 Sink Connect하고 연결되어 있던 Table에 동일하게 업데이트 시켜주는 작업
+
+-Kafka Producer를 이용해서 Kafka Topic에 데이터 직접 전송
+  - Kafka-console-producer에서 데이터 전송 -> Topic에 추가 -> MariaDB에 추가
