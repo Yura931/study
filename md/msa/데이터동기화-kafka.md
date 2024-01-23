@@ -77,8 +77,13 @@
   - $KAFKA_HOME/config/connect-distributed.properties
 - Kafka Connect 실행
   - ./bin/(windows)/connect-distributed ./etc/kafka/connect-distributed.properties
+  - log4j 오류 발생 경우
+    - connect-distributed.bat 파일
+    - set KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:%BASE_DIR%/config/connect-log4j.properties -> set KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:%BASE_DIR%/etc/kafka/connect-log4j.properties 변경
 - Topic 목록 확인
   - ./bin/(windows)/kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+- windows에서 작업 시 토픽 삭제 작업에 에러사항이 있음 이 경우 C:\tmp 디렉토리 하위 zookeeper, kafka 폴더 전체 삭제 후 Kafka, Zookeeper 서버 재기동 시 해결 될 수 있음
 
 #### Kafka Source Connect 테스트
 - Kafka Source Connect 추가(MariaDB)
@@ -99,3 +104,6 @@ echo '
 
 -Kafka Producer를 이용해서 Kafka Topic에 데이터 직접 전송
   - Kafka-console-producer에서 데이터 전송 -> Topic에 추가 -> MariaDB에 추가
+
+
+- micro service 확장 -> 저장하는 파트, 읽어오는 파트를 분리해서 만드는 CQRS 패턴을 사용해서 구축하면 조금 더 효율적으로 메시징 기반의 시스템 이용, 시간 순서에 의해서 메시지가 기록되는 것을 데이터베이스에 저장
